@@ -10,4 +10,5 @@ def about(request):
     return render(request, 'about.html')
 
 def cubes_index(request):
+    cubes = Cube.objects.all()
     return render(request, 'cubes/index.html', {'cubes': cubes})
