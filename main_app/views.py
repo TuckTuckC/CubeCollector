@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cube
+from .forms import TimeForm
 
 
 def home(request):
@@ -16,7 +17,11 @@ def cubes_index(request):
 
 def cube_detail(request, cube_id):
     cube = Cube.objects.get(id=cube_id)
-    return render(request, 'cubes/detail.html', {'cube': cube})
+    time_form = TimeForm()
+    return render(request, 'cubes/detail.html', {
+        'cube': cube,
+        'time_form': time_form
+    })
 
 class CubeCreate(CreateView):
     model = Cube
