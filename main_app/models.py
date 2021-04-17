@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.urls import reverse
+
 class Cube(models.Model):
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=100)
