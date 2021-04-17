@@ -12,3 +12,7 @@ def about(request):
 def cubes_index(request):
     cubes = Cube.objects.all()
     return render(request, 'cubes/index.html', {'cubes': cubes})
+
+def cube_detail(request):
+    cube = Cube.objects.get(id=cube_id)
+    return render(request, 'cubes/detail.html', {'cube': cube})
