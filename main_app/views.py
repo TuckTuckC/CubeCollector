@@ -21,3 +21,11 @@ def cube_detail(request, cube_id):
 class CubeCreate(CreateView):
     model = Cube
     fields = '__all__'
+
+class CubeUpdate(UpdateView):
+    model = Cube
+    fields = ['description']
+
+class CubeDelete(DeleteView):
+    model = Cube
+    success_url = '/cubes/'
