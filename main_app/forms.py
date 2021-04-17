@@ -1,4 +1,4 @@
-from dhango.forms import ModelForm
+from django.forms import ModelForm
 from .models import Time
 
 class TimeForm(ModelForm):

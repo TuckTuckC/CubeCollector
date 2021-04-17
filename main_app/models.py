@@ -16,7 +16,7 @@ class Cube(models.Model):
 
 class Time(models.Model):
     date = models.DateField('Solve Date')
-    time = models.DurationField()
+    time = models.DurationField('Time:')
 
     cube = models.ForeignKey(Cube, on_delete=models.CASCADE)
 
