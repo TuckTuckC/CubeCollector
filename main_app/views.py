@@ -17,3 +17,7 @@ def cubes_index(request):
 def cube_detail(request, cube_id):
     cube = Cube.objects.get(id=cube_id)
     return render(request, 'cubes/detail.html', {'cube': cube})
+
+class CubeCreate(CreateView):
+    model = Cube
+    fields = '__all__'
