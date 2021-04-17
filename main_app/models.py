@@ -18,5 +18,7 @@ class Time(models.Model):
     date = models.DateField()
     time = models.TimeField()
 
+    cube = models.ForeignKey(Cube, on_delete=models.CASCADE)
+
     def __str__(self):
         return f'{self.time} on {self.date}'
