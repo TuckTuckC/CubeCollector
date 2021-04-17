@@ -10,9 +10,9 @@ class Cube:
         self.description = description
 
 cubes = [
-    Cube('365 Air M', 'GAN', 'Very light cube with magnets')
-    Cube('ThunderClap', 'MoFangGe', 'Best speed cube for the price')
-    Cube('Pyraminx', 'MoYu', 'Best pyraminx on the market with magnets')
+    Cube('365 Air M', 'GAN', 'Very light cube with magnets'),
+    Cube('ThunderClap', 'MoFangGe', 'Best speed cube for the price'),
+    Cube('Pyraminx', 'MoYu', 'Best pyraminx on the market with magnets'),
 ]
 
 
