@@ -9,4 +9,5 @@ urlpatterns = [
     path('cubes/create/', views.CubeCreate.as_view(), name='cubes_create'),
     path('cubes/<int:pk>/update/', views.CubeUpdate.as_view(), name='cubes_update'),
     path('cubes/<int:pk>/delete/', views.CubeDelete.as_view(), name='cubes_delete'),
+    path('cubes/<int:cube_id>/add_time/', views.add_time, name='add_time'),
 ]
