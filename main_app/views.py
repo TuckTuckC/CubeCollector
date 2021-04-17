@@ -23,6 +23,15 @@ def cube_detail(request, cube_id):
         'time_form': time_form
     })
 
+def add_time(request, cube_id):
+    form = TimeForm(request.POST)
+
+    if form.is_valid():
+        new_time = form.save(commit=False)
+        new_time.cube_id = cat_id
+        new_time.save()
+    return redirect('detail', cube_id=cube_id)
+
 class CubeCreate(CreateView):
     model = Cube
     fields = '__all__'
