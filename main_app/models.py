@@ -13,3 +13,10 @@ class Cube(models.Model):
     def get_absolute_url(self):
         return reverse("detail", kwargs={"cube_id": self.id})
     
+
+class Time(models.Model):
+    date = models.DateField()
+    time = models.TimeField()
+
+    def __str__(self):
+        return f'{self.time} on {self.date}'
