@@ -2,6 +2,19 @@ from django.db import models
 
 from django.urls import reverse
 
+
+class Stand(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=50)
+
+    # Other goodness such as 'def __str__():' below
+    def __str__(self):
+        return f'{self.name} {self.color}'
+
+    # Add this method
+    def get_absolute_url(self):
+        return reverse('stand_detail', kwargs={'stand_id': self.id})
+
 class Cube(models.Model):
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=100)
@@ -16,12 +29,12 @@ class Cube(models.Model):
 
 class Time(models.Model):
     date = models.DateField('Solve Date')
-    time = models.DurationField('Time:')
+    time = models.TimeField()
 
     cube = models.ForeignKey(Cube, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.time} on {self.date}'
+        return f'{self.time}'
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['time']

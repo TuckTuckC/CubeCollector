@@ -18,6 +18,8 @@ def cubes_index(request):
 def cube_detail(request, cube_id):
     cube = Cube.objects.get(id=cube_id)
     time_form = TimeForm()
+    new_time_format = cube.time_set.all()
+    print(new_time_format[0])
     return render(request, 'cubes/detail.html', {
         'cube': cube,
         'time_form': time_form
@@ -25,11 +27,13 @@ def cube_detail(request, cube_id):
 
 def add_time(request, cube_id):
     form = TimeForm(request.POST)
-
+    print('Add_Time')
     if form.is_valid():
         new_time = form.save(commit=False)
-        new_time.cube_id = cat_id
+        new_time.cube_id = cube_id
         new_time.save()
+    else:
+        print(form.errors)
     return redirect('detail', cube_id=cube_id)
 
 class CubeCreate(CreateView):
