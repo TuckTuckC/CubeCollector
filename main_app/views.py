@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Cube
+from .models import Cube, Stand
 from .forms import TimeForm
 
 
@@ -63,15 +63,15 @@ def stand_detail(request, stand_id):
     }
     return render(request, 'stand/detail.html', context)
     
-class Create_Stand(CreateView):
+class Create_stand(CreateView):
     model = Stand
     fields = '__all__'
 
 
 class Update_stand(UpdateView):
-    model = stand
+    model = Stand
     fields = ['color']
 
 class Delete_stand(DeleteView):
-    model = stand
+    model = Stand
     success_url = '/stands/' 
