@@ -47,3 +47,31 @@ class CubeUpdate(UpdateView):
 class CubeDelete(DeleteView):
     model = Cube
     success_url = '/cubes/'
+
+# Stands views
+def stands_index(request):
+    stands = stand.objects.all()
+    context = {'stands': stands}
+    
+    return render(request, 'stand/index.html', context)
+
+
+def stand_detail(request, stand_id):
+    stand = stand.objects.get(id=stand_id)
+    context = {
+        'stand': stand
+    }
+    return render(request, 'stand/detail.html', context)
+    
+class Create_Stand(CreateView):
+    model = Stand
+    fields = '__all__'
+
+
+class Update_stand(UpdateView):
+    model = stand
+    fields = ['color']
+
+class Delete_stand(DeleteView):
+    model = stand
+    success_url = '/stands/' 
