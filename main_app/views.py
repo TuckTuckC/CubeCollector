@@ -79,3 +79,7 @@ class Update_stand(UpdateView):
 class Delete_stand(DeleteView):
     model = Stand
     success_url = '/stands/' 
+
+def assoc_stand(request, cube_id, stand_id):
+    Cube.objects.get(id=cube_id).stands.add(stand_id)
+    return redirect('detail', cube_id=cube_id)
