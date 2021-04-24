@@ -23,6 +23,13 @@
     {% empty %}
       <div class='card-panel teal-text center-align'>No Photos Uploaded</div>
     {% endfor %}
+
+    <form action='{% url 'add_photo' cube.id %}' enctype='multipart/form-data' method='POST' class='card-panel'>
+      {% csrf_token %}
+      <input type='file' name='photo-file'>
+      <br><br>
+      <input type='submit' class='btn' calue='Upload Photo'>
+    </form>
   
   </div>
   <div class="col s6">

@@ -42,7 +42,7 @@ class Time(models.Model):
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
-    cat = models.ForeignKey(Cube, on_delete=models.CASCADE)
+    cube = models.ForeignKey(Cube, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Photo for cube_id: {self.cube_id} @{self.url}'
