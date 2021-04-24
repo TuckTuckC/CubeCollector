@@ -17,6 +17,13 @@
         <a href="{% url 'cubes_delete' cube.id %}">Delete</a>
       </div>
     </div>
+
+    {% for photo in cube.photo_set.all %}
+      <img class='responsive-ing card-panel' src='{{photo.url}}'>
+    {% empty %}
+      <div class='card-panel teal-text center-align'>No Photos Uploaded</div>
+    {% endfor %}
+  
   </div>
   <div class="col s6">
     <form action="{% url 'add_time' cube.id %}" method='post'>
