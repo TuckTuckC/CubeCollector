@@ -59,6 +59,28 @@
   </div>
   <!-- Available stands will come after this line -->
 </div>
+  <div class="col s6">
+    <h3>Available Stands</h3>
+    {% if stands.count %}
+      {% for stand in stands.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              A <span style="color: {{ stand.color }}">{{ stand.color }}</span> {{ stand.name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{cube.name}} Already Has All Stands Available</h5>
+    {% endif %}
+  </div>
 
 <script>
     var dateEl = document.getElementById('id_date');
