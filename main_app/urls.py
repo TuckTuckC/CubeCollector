@@ -10,7 +10,7 @@ urlpatterns = [
     path('cubes/<int:pk>/update/', views.CubeUpdate.as_view(), name='cubes_update'),
     path('cubes/<int:pk>/delete/', views.CubeDelete.as_view(), name='cubes_delete'),
     path('cubes/<int:cube_id>/add_time/', views.add_time, name='add_time'),
-    path('cubes/<int:cube_id>/assoc_stand/<int:stand_id>/', views.assoc_stand, name='assoc_stand'),
+    path('cubes/<int:cube_id>/add_photo/', views.add_photo, name='add_photo'),
 
     # stand urls
     path('stands/', views.stands_index, name='all_stands'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('stands/create/', views.Create_stand.as_view(), name='create_stand'),
     path('stands/<int:pk>/update/', views.Update_stand.as_view(), name='update_stand'),
     path('stands/<int:pk>/delete/', views.Delete_stand.as_view(), name='delete_stand'),
+    path('cubes/<int:cube_id>/assoc_stand/<int:stand_id>/', views.assoc_stand, name='assoc_stand'),
 ]
