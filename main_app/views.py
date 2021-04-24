@@ -88,3 +88,16 @@ class Delete_stand(DeleteView):
 def assoc_stand(request, cube_id, stand_id):
     Cube.objects.get(id=cube_id).stands.add(stand_id)
     return redirect('detail', cube_id=cube_id)
+
+
+def add_photo(request, cube_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f'{S3_BASE_URL}{BUCKET}/{key}'
+            photo = Photo(url=url, cube_id=cube_id)
+            photo.save()
+        except:
+            print('An error occurred uploading the file to S3')
+    return redirect('detail', cube_id=cube_id)
