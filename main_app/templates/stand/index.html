@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for stand in stands %}
+
+  <div class="card">
+  <a href="{% url 'stand_detail' stand.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ stand.name }}</span>
+      <p>Color: {{ stand.color }}</p>
+    </div>
+    </a>
+  </div>
+  {% comment %} 
+    if there is no elemnts in our list will  display no stands
+  {% endcomment %}
+  {% empty %} 
+
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">No stands</span>
+    </div>
+  </div>
+
+{% endfor %}
+
+{% endblock %}

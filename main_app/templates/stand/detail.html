@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Stand Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ stand.name }}</span>
+    <p>color: {{ stand.color }}</p>
+  </div>
+  <div class="card-action">
+    <a href="{% url 'update_stand' stand.id %}">Edit</a>
+    <a href="{% url 'delete_stand' stand.id %}">Delete</a>
+  </div> 
+</div>
+
+{% endblock %}
