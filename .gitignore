@@ -5,6 +5,9 @@
 __pycache__
 db.sqlite3
 media
+~
+.aws
+credentials
 
 # Backup files # 
 *.bak 
