@@ -17,13 +17,17 @@ def cubes_index(request):
 
 def cube_detail(request, cube_id):
     cube = Cube.objects.get(id=cube_id)
+
+    stands_cube_doesnt_have = Stand.objects.exclude(id__in = cube.stands.all().values_list('id'))
     time_form = TimeForm()
     new_time_format = cube.time_set.all()
-    print(new_time_format[0])
     return render(request, 'cubes/detail.html', {
-        'cube': cube,
-        'time_form': time_form
+    'cube': cube, 
+    'time_form': time_form,
+    # Add the stands to be displayed
+    'stands': stands_cube_doesnt_have
     })
+
 
 def add_time(request, cube_id):
     form = TimeForm(request.POST)
