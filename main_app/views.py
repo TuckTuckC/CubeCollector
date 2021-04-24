@@ -54,14 +54,14 @@ class CubeDelete(DeleteView):
 
 # Stands views
 def stands_index(request):
-    stands = stand.objects.all()
+    stands = Stand.objects.all()
     context = {'stands': stands}
     
     return render(request, 'stand/index.html', context)
 
 
 def stand_detail(request, stand_id):
-    stand = stand.objects.get(id=stand_id)
+    stand = Stand.objects.get(id=stand_id)
     context = {
         'stand': stand
     }
