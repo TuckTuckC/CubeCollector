@@ -9,7 +9,6 @@ import boto3
 S3_BASE_URL = 'https://s3-us-east-1.amazonaws.com/'
 BUCKET = 'tuckercubecollector'
 
-
 def home(request):
     return render(request, 'home.html')
 
@@ -93,10 +92,17 @@ def assoc_stand(request, cube_id, stand_id):
 def add_photo(request, cube_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        print(key)
+        print(s3)
+        print(S3_BASE_URL, BUCKET, 'base url and bucket')
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
-            url = f'{S3_BASE_URL}{BUCKET}/{key}'
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
             photo = Photo(url=url, cube_id=cube_id)
+            print(photo)
+            print(url)
             photo.save()
         except:
             print('An error occurred uploading the file to S3')
