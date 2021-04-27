@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cube, Stand, Photo
 from .forms import TimeForm
@@ -16,6 +17,7 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def cubes_index(request):
     cubes = Cube.objects.filter(user=request.user)
     return render(request, 'cubes/index.html', {'cubes': cubes})
