@@ -22,6 +22,7 @@ def cubes_index(request):
     cubes = Cube.objects.filter(user=request.user)
     return render(request, 'cubes/index.html', {'cubes': cubes})
 
+@login_required
 def cube_detail(request, cube_id):
     cube = Cube.objects.get(id=cube_id)
 
@@ -35,7 +36,7 @@ def cube_detail(request, cube_id):
     'stands': stands_cube_doesnt_have
     })
 
-
+@login_required
 def add_time(request, cube_id):
     form = TimeForm(request.POST)
     print('Add_Time')
@@ -91,11 +92,12 @@ class Delete_stand(DeleteView):
     model = Stand
     success_url = '/stands/' 
 
+@login_required
 def assoc_stand(request, cube_id, stand_id):
     Cube.objects.get(id=cube_id).stands.add(stand_id)
     return redirect('detail', cube_id=cube_id)
 
-
+@login_required
 def add_photo(request, cube_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
