@@ -1,1 +1,1 @@
-web: gunicorn {cube_collector}.wsgi
+web: gunicorn cube_collector.wsgi
