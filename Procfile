@@ -1,0 +1,1 @@
+web: gunicorn {cube_collector}.wsgi

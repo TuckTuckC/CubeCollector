@@ -123,7 +123,7 @@ def signup(request):
     error_message = ''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.us_valid():
+        if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('index')
