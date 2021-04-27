@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cube, Stand, Photo
 from .forms import TimeForm
@@ -48,7 +49,7 @@ def add_time(request, cube_id):
         print(form.errors)
     return redirect('detail', cube_id=cube_id)
 
-class CubeCreate(CreateView):
+class CubeCreate(LoginRequiredMixin, CreateView):
     model = Cube
     fields = '__all__'
 
@@ -56,22 +57,23 @@ class CubeCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class CubeUpdate(UpdateView):
+class CubeUpdate(LoginRequiredMixin, UpdateView):
     model = Cube
     fields = ['description']
 
-class CubeDelete(DeleteView):
+class CubeDelete(LoginRequiredMixin, DeleteView):
     model = Cube
     success_url = '/cubes/'
 
 # Stands views
+@login_required
 def stands_index(request):
     stands = Stand.objects.all()
     context = {'stands': stands}
     
     return render(request, 'stand/index.html', context)
 
-
+@login_required
 def stand_detail(request, stand_id):
     stand = Stand.objects.get(id=stand_id)
     context = {
@@ -79,16 +81,16 @@ def stand_detail(request, stand_id):
     }
     return render(request, 'stand/detail.html', context)
     
-class Create_stand(CreateView):
+class Create_stand(LoginRequiredMixin, CreateView):
     model = Stand
     fields = '__all__'
 
 
-class Update_stand(UpdateView):
+class Update_stand(LoginRequiredMixin, UpdateView):
     model = Stand
     fields = ['color']
 
-class Delete_stand(DeleteView):
+class Delete_stand(LoginRequiredMixin, DeleteView):
     model = Stand
     success_url = '/stands/' 
 
