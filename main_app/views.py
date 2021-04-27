@@ -17,7 +17,7 @@ def about(request):
     return render(request, 'about.html')
 
 def cubes_index(request):
-    cubes = Cube.objects.all()
+    cubes = Cube.objects.filter(user=request.user)
     return render(request, 'cubes/index.html', {'cubes': cubes})
 
 def cube_detail(request, cube_id):
