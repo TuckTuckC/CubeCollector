@@ -51,7 +51,7 @@ def add_time(request, cube_id):
 
 class CubeCreate(LoginRequiredMixin, CreateView):
     model = Cube
-    fields = '__all__'
+    fields = ['brand', 'name', 'description']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
